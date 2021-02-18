@@ -49,6 +49,9 @@ function App() {
                 <Route path="/view">
                     <View />
                 </Route>
+                <Route path="/how-it-works">
+                    <HowItWorks />
+                </Route>
                 <Route path="/">
                     <Home />
                 </Route>
@@ -69,9 +72,9 @@ function Home() {
                         <p>You can login, register and create items for bidding. Also you can bid to existing items.</p>
                     </div>
                     <div class="row center">
-                        <Button
-                            href="#"
-                            node="button"
+                        <Button 
+                            href="/how-it-works"
+                            node="a"
                             className="btn-large waves-effect waves-light orange"
                             style={{ marginRight: '5px' }}
                             waves="light"
@@ -79,7 +82,8 @@ function Home() {
                             How it works ?
                         </Button>
                         <Button
-                            node="button"
+                            href="/view"
+                            node="a"
                             className="btn-large waves-effect waves-light purple"
                             style={{ marginRight: '5px' }}
                             waves="light"
@@ -87,7 +91,8 @@ function Home() {
                             View items
                         </Button>
                         <Button
-                            node="button"
+                            href="/register"
+                            node="a"
                             className="btn-large waves-effect waves-light blue"
                             style={{ marginRight: '5px' }}
                             waves="light"
@@ -95,7 +100,8 @@ function Home() {
                             Register
                         </Button>
                         <Button
-                            node="button"
+                            href="/login"
+                            node="a"
                             className="btn-large waves-effect waves-light green"
                             style={{ marginRight: '5px' }}
                             waves="light"
@@ -126,5 +132,10 @@ function View() {
     return (
         <div>View</div>
     );
+}
+function HowItWorks() {
+    return (
+        <div>How it works !</div>
+    )
 }
 export default App;
