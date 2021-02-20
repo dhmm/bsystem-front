@@ -1,14 +1,67 @@
 import React from 'react';
 import { Modal, Button } from 'react-materialize';
+import axios from 'axios';
 
 class RegisterModal extends React.Component {
+
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            fullname: null,
+            username: null,
+            email: null,
+            password: null
+        }
+
+        this.fullNameChanged = this.fullNameChanged.bind(this);
+        this.usernameChanged = this.usernameChanged.bind(this);
+        this.emailChanged = this.emailChanged.bind(this);
+        this.passwordChanged = this.passwordChanged.bind(this);
+    }
+
+    fullNameChanged(event) {
+        this.setState({
+            fullname : event.target.value
+        });
+    }
+    usernameChanged(event) {
+        this.setState({
+            username : event.target.value
+        });
+    }
+    emailChanged(event) {
+        this.setState({
+            email : event.target.value
+        });
+    }
+    passwordChanged(event) {
+        this.setState({
+            password : event.target.value
+        });
+    }
+
+    register(){
+        axios.post('https://localhost:8000/user/register', {
+            fullname: this.state.fullname,
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
 
     render() {
         return (
             <Modal
                 actions={[
                     <Button flat modal="close" node="button" waves="green">Close</Button>,
-                    <Button node="button" waves="blue" onClick={() => { alert('asd') }}>Register</Button>
+                    <Button node="button" waves="blue" onClick={() => { this.register(); }}>Register</Button>
                 ]}
                 bottomSheet={false}
                 fixedFooter={false}
@@ -44,19 +97,19 @@ class RegisterModal extends React.Component {
                         <form class="col s12">
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="first_name" type="text" class="validate" />
-                                    <label for="first_name">Fullname</label>
+                                    <input id="fullname" type="text" class="validate" value={this.state.fullname} onChange={this.fullNameChanged} />
+                                    <label for="fullname">Fullname</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input id="first_name" type="text" class="validate" />
-                                    <label for="first_name">Username</label>
+                                    <input id="username" type="text" class="validate" value={this.state.username} onChange={this.usernameChanged} />
+                                    <label for="username">Username</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input id="email" type="email" class="validate" />
+                                    <input id="email" type="email" class="validate" value={this.state.email} onChange={this.emailChanged}/>
                                     <label for="email">Email</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input id="password" type="password" class="validate" />
+                                    <input id="password" type="password" class="validate"value={this.state.password} onChange={this.passwordChanged} />
                                     <label for="password">Password</label>
                                 </div>
                             </div>
