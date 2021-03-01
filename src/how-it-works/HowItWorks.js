@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Button, Modal } from 'react-materialize';
 
 class HowItWorks extends React.Component {
     render() {

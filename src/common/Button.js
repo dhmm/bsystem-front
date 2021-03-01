@@ -2,9 +2,6 @@ import React from 'react';
 import { Button as MaterializeButton } from 'react-materialize';
 
 class Button extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return <MaterializeButton
             href={this.props.href}

@@ -4,6 +4,30 @@ import { Modal, Button } from 'react-materialize';
 
 class LoginModal extends React.Component {
 
+    constructor(props)
+    {
+        super(props);
+        this.state = {            
+            username: "",            
+            password: ""
+        }
+        
+        this.usernameChanged = this.usernameChanged.bind(this);
+        this.passwordChanged = this.passwordChanged.bind(this);
+    }
+
+    usernameChanged(event) {
+        this.setState({
+            username : event.target.value
+        });
+    }
+    
+    passwordChanged(event) {
+        this.setState({
+            password : event.target.value
+        });
+    }
+
     render() {
         return (
             <Modal
@@ -40,18 +64,18 @@ class LoginModal extends React.Component {
                     Login
                                 </Button>}
             >
-                <p>
-                    <form class="col s12">
-                        <div class="input-field col s6">
-                            <input id="first_name" type="text" class="validate" />
-                            <label for="first_name">Username</label>
+                <div>
+                    <form className="col s12">
+                        <div className="input-field col s6">
+                            <input id="username" type="text" className="validate" value={this.state.username} onChange={this.usernameChanged}  />
+                            <label htmlFor="username">Username</label>
                         </div>
-                        <div class="input-field col s6">
-                            <input id="password" type="password" class="validate" />
-                            <label for="password">Password</label>
+                        <div className="input-field col s6">
+                            <input id="password" type="password" className="validate" value={this.state.password} onChange={this.passwordChanged} />
+                            <label htmlFor="password">Password</label>
                         </div>
                     </form>
-                </p>
+                </div>
             </Modal >
         )
     }
